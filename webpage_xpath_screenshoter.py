@@ -61,11 +61,12 @@ def parse_and_screenshot_xpath_elements(url, xpath=None, screenshots=None):
 
         print '[*] Element #{n} info:\n----------------------\nlocation: ' \
               '{location}\nsize: {size}\n'.format(n=ecount,
-                                                location=str(e.location),
-                                                size=str(e.size))
+                                                  location=str(e.location),
+                                                  size=str(e.size)
+                                                  )
 
         print '[*] Saving screenshot of element #%d: %s\n' % (ecount,
-                                                               file_name)
+                                                              file_name)
 
         # saving the image file
         im.save(screenshots + '/' + file_name)
