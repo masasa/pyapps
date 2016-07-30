@@ -2,7 +2,7 @@
 import os
 import argparse
 
-# this function copy files unless it got arument move as True, then
+# this function copy files unless it got argument move as True, then
 # instead of copying the file it moving the file
 def file_copy(src_file, dst_file, move = False):
 
@@ -20,8 +20,8 @@ def file_copy(src_file, dst_file, move = False):
 		file(dst_file, 'wb').write(file(src_file, 'rb').read())
 		print '{} was copied successfully to {}'.format(src_file, dst_file)
 
-def main():
 
+def main():
 	# parsing user arguments input
 	parser = argparse.ArgumentParser()
 	parser.add_argument('src_file', help='Path to source file')
