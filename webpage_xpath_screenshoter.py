@@ -53,10 +53,7 @@ def parse_and_screenshot_xpath_elements(url, xpath=None, screenshots=None):
     time_format = '%s.%s.%s_%s.%s' % (t.day, t.month, t.year, t.hour, t.minute)
 
     for e in elements:
-
         ecount += 1
-
-        t = datetime.now()
         file_name = 'scr_%s_%d.png' % (time_format, ecount)
 
         im = Image.open(StringIO(img))
