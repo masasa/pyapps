@@ -1,6 +1,6 @@
-import argparse
 import io
 import os
+import argparse
 from StringIO import StringIO
 from datetime import datetime
 
@@ -9,10 +9,12 @@ from PIL import Image
 from selenium import webdriver
 
 screenshots_dir = 'screenshots'
-html_file = 'elements.html'
+t = datetime.now()
+time_format = '%s.%s.%s_%s.%s' % (t.day, t.month, t.year, t.hour, t.minute)
+html_file = '%s_web_elements.html' % time_format
 
 
-def write_html_to_file(file, html):
+def write_html_to_file(filename, html):
 
     # make BeautifulSoup
     soup = bs(html)
@@ -20,7 +22,7 @@ def write_html_to_file(file, html):
     # prettify the html
     pretty_html = soup.prettify()
 
-    file.write(pretty_html)
+    filename.write(pretty_html)
 
 
 def screenshot_element(im, element):
@@ -67,9 +69,6 @@ def parse_and_screenshot_xpath_elements(url,
         os.makedirs(screenshots)
 
     ecount = 0
-    t = datetime.now()
-    time_format = '%s.%s.%s_%s.%s' % (t.day, t.month, t.year, t.hour, t.minute)
-
     f = io.open(htmlfile, mode='ab+')
 
     for e in elements:
@@ -79,25 +78,30 @@ def parse_and_screenshot_xpath_elements(url,
         im = Image.open(StringIO(img))
         im = screenshot_element(im, e)
 
-        print '[*] Element #{n} info:\n----------------------\nlocation: ' \
-              '{location}\nsize: {size}\n'.format(n=ecount,
-                                                  location=str(e.location),
-                                                  size=str(e.size)
-                                                  )
+        print '[*] Element #{n} info:\n' \
+              '----------------------\n' \
+              '[*] location: {location}\n' \
+              '[*] size: {size}'.format(n=ecount,
+                                        location=str(e.location),
+                                        size=str(e.size)
+                                        )
 
-        print '[*] Saving screenshot of element #%d: %s\n' % (ecount,
-                                                              file_name)
-
+        print '[*] Saving screenshot of element #%d to: %s' % (ecount,
+                                                               file_name)
+        print '[*] Saving html code of element #%d to: %s\n' % (ecount,
+                                                                htmlfile)
         html_code = e.get_attribute('innerHTML')
-        write_html_to_file(f, html_code)
+        write_html_to_file(f, html_code.encode('utf-8'))
 
         # saving the image file
         im.save(screenshots + '/' + file_name)
 
     path = os.getcwd() + '/' + screenshots
-    print '[*] Successfully extracted %d web elements to %s' % (ecount,
-                                                                htmlfile)
-    print '[*] Successfully extracted %d images to %s' % (ecount, path)
+    print '[*] Successfully extracted %d web elements html code to %s' \
+          % (ecount, htmlfile)
+    print '[*] Successfully extracted %d web elements images to %s'\
+          % (ecount, path)
+
     f.close()
     driver.quit()
 
@@ -124,7 +128,6 @@ def main():
                         help='file to save html code of xpath elements',
                         type=str,
                         default=html_file)
-
 
     args = parser.parse_args()
     parse_and_screenshot_xpath_elements(args.url,
