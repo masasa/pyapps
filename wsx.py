@@ -9,6 +9,10 @@ for more info about xpath please see:
     https://www.w3schools.com/xml/xpath_intro.asp
 
 example of usage:
+    ./wsx.py 'https://github.com/'
+
+    This example will screenshot the whole webpage of github.com
+
     ./wsx.py 'https://news.google.com' -x './/div[@class="blended-wrapper esc-wrapper"]' -s 'google_news'
 
     This will screenshot all articles previews in google news and saves them
@@ -164,7 +168,7 @@ def main():
      type=str, default='https://www.google.com')
     parser.add_argument('-x', '--xpath',
                         help='XPATH of the elements to be screenshoted',
-                        type=str, default=".//html")
+                        type=str, default="html/body")
 
     parser.add_argument('-s',
                         '--screenshots',
