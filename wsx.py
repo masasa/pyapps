@@ -3,7 +3,7 @@
 """
 wsx.py: WSX - Webpage Screenshooter by Xpath is a tool which allow you
 to screenshot web elements from a specific web page based on their xpath and
-save them to your local machine (e.g. './/html' will screenshot the whole
+save them to your local machine (e.g. 'html/body' will screenshot the whole
 webpage to one image).
 for more info about xpath please see:
     https://www.w3schools.com/xml/xpath_intro.asp
@@ -11,7 +11,8 @@ for more info about xpath please see:
 example of usage:
     ./wsx.py 'https://github.com/'
 
-    This example will screenshot the whole webpage of github.com
+    This example will screenshot the whole webpage of github.com & save it to
+    a folder named: screenshots (by default)
 
     ./wsx.py 'https://news.google.com' -x './/div[@class="blended-wrapper esc-wrapper"]' -s 'google_news'
 
