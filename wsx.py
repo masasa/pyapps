@@ -1,10 +1,31 @@
+#!/usr/bin/env python
+
+"""
+wsx.py: WSX - Webpage Screenshooter by Xpath is a tool which allow you
+to screenshot web elements from a specific web page based on their xpath and
+save them to your local machine (e.g. './/html' will screenshot the whole
+webpage to one image).
+for more info about xpath please see:
+    https://www.w3schools.com/xml/xpath_intro.asp
+
+example of usage:
+    ./wsx.py 'https://news.google.com' -x './/div[@class="blended-wrapper esc-wrapper"]' -s 'google_news'
+
+    This will screenshot all articles previews in google news and saves them
+    to a folder named: google_news.
+"""
+
+__author__      = "Omri Masasa"
+__copyright__   = "Copyright 2016, Omri Masasa"
+__version__ = "1.2"
+
 #------------------------------------------------------------------------
-#                .__                                  __
-# __  _  __ ____ |  |   ____  ____   _____   ____   _/  |_  ____
-# \ \/ \/ // __ \|  | _/ ___\/  _ \ /     \_/ __ \  \   __\/  _ \
-#  \     /\  ___/|  |_\  \__(  <_> )  Y Y  \  ___/   |  | (  <_> )
-#   \/\_/  \___  >____/\___  >____/|__|_|  /\___  >  |__|  \____/
-#              \/          \/            \/     \/
+#                       .__                                  __
+#        __  _  __ ____ |  |   ____  ____   _____   ____   _/  |_  ____
+#        \ \/ \/ // __ \|  | _/ ___\/  _ \ /     \_/ __ \  \   __\/  _ \
+#         \     /\  ___/|  |_\  \__(  <_> )  Y Y  \  ___/   |  | (  <_> )
+#          \/\_/  \___  >____/\___  >____/|__|_|  /\___  >  |__|  \____/
+#                     \/          \/            \/     \/
 #
 #                  __      __  _____________  ___
 #                 /  \    /  \/   _____/\   \/  /
